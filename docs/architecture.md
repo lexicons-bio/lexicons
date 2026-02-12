@@ -1,0 +1,88 @@
+# Architecture & Design Decisions
+
+## Record Relationships
+
+The lexicons follow a **star schema** with the occurrence record at the center:
+
+```
+                    ┌─────────────────────┐
+                    │       like          │
+                    │ subject: strongRef  │
+                    └─────────┬───────────┘
+                              │ references
+                              ▼
+┌─────────────────┐    ┌─────────────┐    ┌─────────────────┐
+│  identification  │──▶│  occurrence  │◀──│     comment      │
+│  subject: ref    │    │  (central)  │    │  subject: ref    │
+│  taxon: #taxon   │    │  #location  │    │  replyTo: ref    │
+└─────────────────┘    │  #imageEmbed│    └─────────────────┘
+        ▲               └──────┬──────┘
+        │ reuses #taxon        │
+┌───────┴─────────┐            │ references
+│   interaction    │◀──────────┘
+│  subjectA: ref   │
+│  subjectB: ref   │
+│  #interactionSubject │
+└─────────────────┘
+```
+
+Every sidecar record references an occurrence via `com.atproto.repo.strongRef` — a pair of URI + CID that creates an immutable, content-addressed link.
+
+## Key Design Decisions
+
+### Taxonomy in Identifications, Not Occurrences
+
+Unlike traditional biodiversity databases where taxonomy is part of the observation record, our occurrences contain no taxonomy fields. Instead:
+
+1. Users submit an **occurrence** (photos, location, date)
+2. Users submit **identification** records referencing that occurrence
+3. The appview computes a **community consensus** from all identifications
+
+This enables:
+- Observations without knowing the species ("What is this?")
+- Multiple competing identifications with different confidence levels
+- Community-driven consensus building, similar to iNaturalist
+- Full identification history preserved in the decentralized network
+
+### Embedded `#taxon` Object
+
+The `#taxon` object is defined within the identification lexicon and contains the full Darwin Core Taxon class hierarchy (kingdom through genus, plus scientific name and authorship). This follows the [GBIF Identification History extension](https://rs.gbif.org/extension/dwc/identification.xml) pattern where each identification carries its own snapshot of the taxon.
+
+The interaction lexicon cross-references this type via `org.rwell.test.identification#taxon`, avoiding duplication.
+
+### `knownValues` Over `enum`
+
+Per the [AT Protocol Lexicon Style Guide](https://atproto.com/guides/lexicon-style-guide) and [Lexinomicon](https://docs.google.com/document/d/1goj4pSPH-EKMtP3Y2vDIEKbLFEVGdeoKqpnmRH9S4t0/) community guide, we use `knownValues` (open sets) instead of `enum` (closed sets) for most string fields:
+
+- **`knownValues`**: Validators accept any string, but suggest these specific values. Forward-compatible — new values can be added without breaking existing clients.
+- **`enum`**: Validators reject unknown values. Used only when the set is truly closed (e.g., interaction `direction`: `AtoB`, `BtoA`, `bidirectional`).
+
+Fields using `knownValues`: `basisOfRecord`, `occurrenceStatus`, `sex`, `lifeStage`, `taxonRank`, `interactionType`, `confidence`, `identificationQualifier`
+
+Fields using `enum`: `direction` (truly exhaustive set)
+
+### `strongRef` for Immutable References
+
+All cross-record references use AT Protocol's `com.atproto.repo.strongRef`, which contains:
+- **`uri`**: The AT Protocol URI (`at://did/collection/rkey`)
+- **`cid`**: Content identifier (hash of the record content)
+
+The CID ensures that a reference always points to a specific version of the target record. If the target is updated, the CID changes, making the reference point to the historical version.
+
+### Coordinates as Strings
+
+Latitude and longitude are stored as strings rather than numbers to preserve exact decimal precision. Floating-point representation can introduce rounding artifacts (e.g., `37.7749` might become `37.774899999999997`). String storage preserves the user's original coordinate values exactly.
+
+## Namespace Roadmap
+
+The current namespace `org.rwell.test.*` is experimental. The planned production namespace is `bio.sky.*`:
+
+```
+org.rwell.test.occurrence        →  bio.sky.observation.occurrence
+org.rwell.test.identification    →  bio.sky.observation.identification
+org.rwell.test.interaction       →  bio.sky.observation.interaction
+org.rwell.test.comment           →  bio.sky.observation.comment
+org.rwell.test.like              →  bio.sky.feed.like
+```
+
+The migration will happen once the `bio.sky` domain is secured and DNS authority is configured for [NSID verification](https://atproto.com/specs/nsid).
