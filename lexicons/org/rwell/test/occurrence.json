@@ -115,6 +115,11 @@
               "SUBADULT"
             ],
             "maxLength": 32
+          },
+          "habitat": {
+            "type": "string",
+            "description": "A category or description of the habitat in which the event occurred (Darwin Core dwc:habitat).",
+            "maxLength": 256
           }
         }
       }

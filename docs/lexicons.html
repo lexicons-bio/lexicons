@@ -63,6 +63,7 @@ tr:hover { background: #fafafa; }
 <tr><td><span class="field-name">individualCount</span></td><td><span class="type">integer</span></td><td class="def">The number of individuals observed (Darwin Core dwc:individualCount).</td><td><span class="constraints">min: 1</span></td><td><a class="term-link" href="http://rs.tdwg.org/dwc/terms/individualCount">dwc:individualCount</a></td></tr>
 <tr><td><span class="field-name">sex</span></td><td><span class="type">string</span></td><td class="def">The sex of the organism(s) (Darwin Core dwc:sex).</td><td><span class="constraints">max: 32, MALE | FEMALE | HERMAPHRODITE</span></td><td><a class="term-link" href="http://rs.tdwg.org/dwc/terms/sex">dwc:sex</a></td></tr>
 <tr><td><span class="field-name">lifeStage</span></td><td><span class="type">string</span></td><td class="def">The age class or life stage of the organism(s) (Darwin Core dwc:lifeStage).</td><td><span class="constraints">max: 32, 9 values</span></td><td><a class="term-link" href="http://rs.tdwg.org/dwc/terms/lifeStage">dwc:lifeStage</a></td></tr>
+<tr><td><span class="field-name">habitat</span></td><td><span class="type">string</span></td><td class="def">A category or description of the habitat in which the event occurred (Darwin Core dwc:habitat).</td><td><span class="constraints">max: 256</span></td><td><a class="term-link" href="http://rs.tdwg.org/dwc/terms/habitat">dwc:habitat</a></td></tr>
 </tbody>
 </table>
 <h3>#location</h3>
@@ -147,9 +148,9 @@ tr:hover { background: #fafafa; }
 <p class="section-title"><strong>Darwin Core Alignment</strong></p>
 <p class="subtitle">Cross-reference against <a class="term-link" href="https://dwc.tdwg.org/terms/">Darwin Core</a> terms</p>
 <div class="stats">
-  <div class="stat"><div class="stat-value">24%</div><div class="stat-label">DwC coverage</div></div>
-  <div class="stat"><div class="stat-value">40</div><div class="stat-label">Mapped</div></div>
-  <div class="stat"><div class="stat-value">124</div><div class="stat-label">Missing</div></div>
+  <div class="stat"><div class="stat-value">25%</div><div class="stat-label">DwC coverage</div></div>
+  <div class="stat"><div class="stat-value">41</div><div class="stat-label">Mapped</div></div>
+  <div class="stat"><div class="stat-value">123</div><div class="stat-label">Missing</div></div>
 </div>
 </div>
 
@@ -185,7 +186,7 @@ tr:hover { background: #fafafa; }
 <tr><td><a class="term-link" href="http://rs.tdwg.org/dwc/terms/vitality">vitality</a></td><td class="def">An indication of whether a dwc:Organism was alive or dead at the time of collection or observation.</td><td></td><td></td><td><span class="badge badge-missing">missing</span></td></tr>
 </tbody>
 </table>
-<h3>Event <span style="color:#888;font-weight:normal">(1/23 mapped)</span></h3>
+<h3>Event <span style="color:#888;font-weight:normal">(2/23 mapped)</span></h3>
 <table>
 <thead><tr><th>DwC Term</th><th class="def">Definition</th><th>Lexicon Field</th><th>Type</th><th>Status</th></tr></thead>
 <tbody>
@@ -200,7 +201,7 @@ tr:hover { background: #fafafa; }
 <tr><td><a class="term-link" href="http://rs.tdwg.org/dwc/terms/fieldNumber">fieldNumber</a></td><td class="def">An identifier given to the dwc:Event in the field. Often serves as a link between field notes and the dwc:Event.</td><td></td><td></td><td><span class="badge badge-missing">missing</span></td></tr>
 <tr><td><a class="term-link" href="http://rs.tdwg.org/ac/terms/fundingAttribution">fundingAttribution</a></td><td class="def">Text description of organizations or individuals who funded the creation of the resource.</td><td></td><td></td><td><span class="badge badge-missing">missing</span></td></tr>
 <tr><td><a class="term-link" href="http://rs.tdwg.org/dwc/terms/fundingAttributionID">fundingAttributionID</a></td><td class="def">A list (concatenated and separated) of the globally unique identifiers for the funding organizations or agencies that supported the project.</td><td></td><td></td><td><span class="badge badge-missing">missing</span></td></tr>
-<tr><td><a class="term-link" href="http://rs.tdwg.org/dwc/terms/habitat">habitat</a></td><td class="def">A category or description of the habitat in which the dwc:Event occurred.</td><td></td><td></td><td><span class="badge badge-missing">missing</span></td></tr>
+<tr><td><a class="term-link" href="http://rs.tdwg.org/dwc/terms/habitat">habitat</a></td><td class="def">A category or description of the habitat in which the dwc:Event occurred.</td><td><span class="field-name">habitat</span></td><td><span class="type">string</span></td><td><span class="badge badge-mapped">mapped</span></td></tr>
 <tr><td><a class="term-link" href="http://rs.tdwg.org/dwc/terms/month">month</a></td><td class="def">The integer month in which the dwc:Event occurred.</td><td></td><td></td><td><span class="badge badge-missing">missing</span></td></tr>
 <tr><td><a class="term-link" href="http://rs.tdwg.org/dwc/terms/parentEventID">parentEventID</a></td><td class="def">An identifier for the broader dwc:Event that groups this and potentially other dwc:Events.</td><td></td><td></td><td><span class="badge badge-missing">missing</span></td></tr>
 <tr><td><a class="term-link" href="http://rs.tdwg.org/dwc/terms/projectID">projectID</a></td><td class="def">A list (concatenated and separated) of identifiers for projects that contributed to a dwc:Event.</td><td></td><td></td><td><span class="badge badge-missing">missing</span></td></tr>
