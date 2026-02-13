@@ -21,6 +21,7 @@ Field-by-field mapping between atbio lexicons and [Darwin Core](https://dwc.tdwg
 | `habitat` | dwc:habitat | Free-text habitat description |
 | `establishmentMeans` | dwc:establishmentMeans | GBIF vocabulary: `NATIVE`, `INTRODUCED`, etc. |
 | `behavior` | dwc:behavior | Free-text behavior description |
+| `caste` | dwc:caste | For eusocial species (e.g., `queen`, `worker`) |
 | (AT Protocol URI) | dwc:occurrenceID | `at://did:plc:.../org.rwell.test.occurrence/...` |
 | (repo owner DID) | dwc:recordedBy | Derived from AT Protocol identity |
 

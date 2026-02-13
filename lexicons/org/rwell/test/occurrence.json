@@ -138,6 +138,11 @@
             "type": "string",
             "description": "The behavior shown by the organism at the time of the observation (Darwin Core dwc:behavior).",
             "maxLength": 256
+          },
+          "caste": {
+            "type": "string",
+            "description": "Categorisation of individuals for eusocial species (Darwin Core dwc:caste).",
+            "maxLength": 64
           }
         }
       }
