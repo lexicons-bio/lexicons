@@ -22,14 +22,14 @@ MODELS = [
     {
         "name": "Occurrence",
         "slug": "occurrence",
-        "lexicon": ROOT / "lexicons" / "bio" / "lexicons" / "occurrence.json",
+        "lexicon": ROOT / "lexicons" / "bio" / "lexicons" / "temp" / "occurrence.json",
         "classes": ["Occurrence", "Event", "Location", "Record-level"],
         "description": "A biodiversity observation — an organism at a place and time.",
     },
     {
         "name": "Identification",
         "slug": "identification",
-        "lexicon": ROOT / "lexicons" / "bio" / "lexicons" / "identification.json",
+        "lexicon": ROOT / "lexicons" / "bio" / "lexicons" / "temp" / "identification.json",
         "classes": ["Identification", "Taxon"],
         "description": "A taxonomic determination for an observation.",
     },

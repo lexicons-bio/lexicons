@@ -8,8 +8,8 @@ These lexicons define the record types used by [Observ.ing](https://observ.ing),
 
 | NSID | Description |
 |------|-------------|
-| [`bio.lexicons.occurrence`](#occurrence) | A biodiversity observation — organism at a place and time |
-| [`bio.lexicons.identification`](#identification) | A taxonomic determination for an observation |
+| [`bio.lexicons.temp.occurrence`](#occurrence) | A biodiversity observation — organism at a place and time |
+| [`bio.lexicons.temp.identification`](#identification) | A taxonomic determination for an observation |
 
 ## Architecture
 
@@ -31,7 +31,7 @@ All records use AT Protocol's `strongRef` (URI + CID) to create immutable links 
 
 ## Occurrence
 
-**NSID:** `bio.lexicons.occurrence`
+**NSID:** `bio.lexicons.temp.occurrence`
 
 An existence of an organism at a particular place at a particular time ([dwc:Occurrence](https://dwc.tdwg.org/terms/#occurrence)). This is the core record type — every observation starts here.
 
@@ -128,7 +128,7 @@ An existence of an organism at a particular place at a particular time ([dwc:Occ
 
 ## Identification
 
-**NSID:** `bio.lexicons.identification`
+**NSID:** `bio.lexicons.temp.identification`
 
 A taxonomic determination for an observation ([dwc:Identification](https://dwc.tdwg.org/list/#identification)). Multiple users can submit identifications for the same observation, enabling community consensus — similar to iNaturalist's community ID system but fully decentralized.
 
@@ -139,7 +139,7 @@ The identification contains an embedded `#taxon` object following the [Darwin Co
 ```json
 {
   "subject": {
-    "uri": "at://did:plc:abc.../bio.lexicons.occurrence/3k...",
+    "uri": "at://did:plc:abc.../bio.lexicons.temp.occurrence/3k...",
     "cid": "bafyrei..."
   },
   "taxon": {
@@ -219,7 +219,7 @@ For the complete field-by-field Darwin Core mapping, see [docs/darwin-core.md](d
 
 These lexicons follow the [AT Protocol Lexicon](https://atproto.com/specs/lexicon) schema format. To use them in your own AT Protocol application:
 
-1. **Reference by NSID** — Use the namespace identifier (e.g., `bio.lexicons.occurrence`) to read/write records
+1. **Reference by NSID** — Use the namespace identifier (e.g., `bio.lexicons.temp.occurrence`) to read/write records
 2. **Store in user repos** — Records are stored in users' personal data servers (PDS) under the appropriate collection
 3. **Build an appview** — Aggregate records from across the network via the AT Protocol firehose
 

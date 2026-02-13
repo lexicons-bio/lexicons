@@ -15,8 +15,8 @@ DWC_CSV = ROOT / "schemas" / "dwc" / "term_versions.csv"
 
 # Lexicons to check
 LEXICON_PATHS = [
-    ROOT / "lexicons" / "bio" / "lexicons" / "occurrence.json",
-    ROOT / "lexicons" / "bio" / "lexicons" / "identification.json",
+    ROOT / "lexicons" / "bio" / "lexicons" / "temp" / "occurrence.json",
+    ROOT / "lexicons" / "bio" / "lexicons" / "temp" / "identification.json",
 ]
 
 # DwC classes that map to the two lexicon records:
