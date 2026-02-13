@@ -1,6 +1,6 @@
 # Darwin Core Alignment
 
-Field-by-field mapping between atbio lexicons and [Darwin Core](https://dwc.tdwg.org/) (DwC) / [GBIF](https://www.gbif.org/) standards.
+Field-by-field mapping between lexicons.bio lexicons and [Darwin Core](https://dwc.tdwg.org/) (DwC) / [GBIF](https://www.gbif.org/) standards.
 
 ## Occurrence
 

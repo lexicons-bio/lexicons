@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Generate a static HTML page documenting atbio lexicons and Darwin Core alignment.
+"""Generate a static HTML page documenting lexicons.bio lexicons and Darwin Core alignment.
 
 Reads the AT Protocol lexicon JSON files and TDWG term_versions.csv,
 then produces docs/lexicons.html with full lexicon reference tables
@@ -421,7 +421,7 @@ def main():
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Lexicon Reference — atbio</title>
+<title>Lexicon Reference — lexicons.bio</title>
 <style>{CSS}</style>
 </head>
 <body>

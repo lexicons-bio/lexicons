@@ -1,4 +1,4 @@
-# atbio
+# lexicons.bio
 
 AT Protocol lexicons for decentralized biodiversity observation data, aligned with [Darwin Core](https://dwc.tdwg.org/) and [GBIF](https://www.gbif.org/) standards.
 
