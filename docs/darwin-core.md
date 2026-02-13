@@ -4,7 +4,7 @@ Field-by-field mapping between lexicons.bio lexicons and [Darwin Core](https://d
 
 ## Occurrence
 
-`org.rwell.test.occurrence` maps to [dwc:Occurrence](https://dwc.tdwg.org/terms/#occurrence) + [dwc:Event](https://dwc.tdwg.org/terms/#event) + [dwc:Location](https://dwc.tdwg.org/terms/#location).
+`bio.lexicons.occurrence` maps to [dwc:Occurrence](https://dwc.tdwg.org/terms/#occurrence) + [dwc:Event](https://dwc.tdwg.org/terms/#event) + [dwc:Location](https://dwc.tdwg.org/terms/#location).
 
 | Lexicon Field | Darwin Core Term | Notes |
 |---------------|-----------------|-------|
@@ -22,7 +22,7 @@ Field-by-field mapping between lexicons.bio lexicons and [Darwin Core](https://d
 | `establishmentMeans` | dwc:establishmentMeans | `native`, `introduced`, etc. |
 | `behavior` | dwc:behavior | Free-text behavior description |
 | `caste` | dwc:caste | For eusocial species (e.g., `queen`, `worker`) |
-| (AT Protocol URI) | dwc:occurrenceID | `at://did:plc:.../org.rwell.test.occurrence/...` |
+| (AT Protocol URI) | dwc:occurrenceID | `at://did:plc:.../bio.lexicons.occurrence/...` |
 | (repo owner DID) | dwc:recordedBy | Derived from AT Protocol identity |
 
 ### Location Fields
@@ -48,7 +48,7 @@ Field-by-field mapping between lexicons.bio lexicons and [Darwin Core](https://d
 
 ## Identification
 
-`org.rwell.test.identification` maps to [dwc:Identification](https://dwc.tdwg.org/list/#identification) with an embedded [dwc:Taxon](https://dwc.tdwg.org/list/#taxon).
+`bio.lexicons.identification` maps to [dwc:Identification](https://dwc.tdwg.org/list/#identification) with an embedded [dwc:Taxon](https://dwc.tdwg.org/list/#taxon).
 
 ### Identification Fields
 

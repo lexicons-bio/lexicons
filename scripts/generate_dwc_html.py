@@ -19,12 +19,12 @@ OUTPUT = ROOT / "docs" / "lexicons.html"
 MODELS = [
     {
         "name": "Occurrence",
-        "lexicon": ROOT / "lexicons" / "org" / "rwell" / "test" / "occurrence.json",
+        "lexicon": ROOT / "lexicons" / "bio" / "lexicons" / "occurrence.json",
         "classes": ["Occurrence", "Event", "Location", "Record-level"],
     },
     {
         "name": "Identification",
-        "lexicon": ROOT / "lexicons" / "org" / "rwell" / "test" / "identification.json",
+        "lexicon": ROOT / "lexicons" / "bio" / "lexicons" / "identification.json",
         "classes": ["Identification", "Taxon"],
     },
 ]

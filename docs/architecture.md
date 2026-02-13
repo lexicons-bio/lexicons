@@ -56,13 +56,6 @@ The CID ensures that a reference always points to a specific version of the targ
 
 Latitude and longitude are stored as strings rather than numbers to preserve exact decimal precision. Floating-point representation can introduce rounding artifacts (e.g., `37.7749` might become `37.774899999999997`). String storage preserves the user's original coordinate values exactly.
 
-## Namespace Roadmap
+## Namespace
 
-The current namespace `org.rwell.test.*` is experimental. The planned production namespace is `bio.sky.*`:
-
-```
-org.rwell.test.occurrence        →  bio.sky.observation.occurrence
-org.rwell.test.identification    →  bio.sky.observation.identification
-```
-
-The migration will happen once the `bio.sky` domain is secured and DNS authority is configured for [NSID verification](https://atproto.com/specs/nsid).
+The lexicons use the `bio.lexicons.*` namespace, corresponding to the `lexicons.bio` domain. See the [AT Protocol NSID specification](https://atproto.com/specs/nsid) for how domain-based namespacing works.

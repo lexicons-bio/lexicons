@@ -1,6 +1,6 @@
 {
   "lexicon": 1,
-  "id": "org.rwell.test.identification",
+  "id": "bio.lexicons.identification",
   "defs": {
     "main": {
       "type": "record",
