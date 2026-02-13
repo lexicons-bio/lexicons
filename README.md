@@ -374,4 +374,4 @@ Records reference each other using `com.atproto.repo.strongRef`, which contains 
 
 ## License
 
-The lexicon schemas in this repository are licensed under [CC-BY-4.0](LICENSE).
+The lexicon schemas in this repository are licensed under [CC0 1.0 Universal](LICENSE).
