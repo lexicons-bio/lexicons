@@ -10,29 +10,16 @@ These lexicons define the record types used by [Observ.ing](https://observ.ing),
 |------|-------------|
 | [`org.rwell.test.occurrence`](#occurrence) | A biodiversity observation — organism at a place and time |
 | [`org.rwell.test.identification`](#identification) | A taxonomic determination for an observation |
-| [`org.rwell.test.interaction`](#interaction) | An ecological relationship between organisms |
-| [`org.rwell.test.comment`](#comment) | A discussion comment on an observation |
-| [`org.rwell.test.like`](#like) | Appreciation of an observation |
 
 ## Architecture
 
 All records use AT Protocol's `strongRef` (URI + CID) to create immutable links between records. The occurrence record sits at the center, with other record types referencing it:
 
 ```
-                           ┌──────────────┐
-                           │    like       │
-                           │  (strongRef)  │
-                           └──────┬───────┘
-                                  │
-┌──────────────┐    ┌─────────────┴─────────────┐    ┌──────────────┐
-│identification │───▶│        occurrence          │◀───│   comment    │
-│  #taxon       │    │  #location  #imageEmbed    │    │  (threaded)  │
-└──────────────┘    └─────────────┬─────────────┘    └──────────────┘
-                                  │
-                           ┌──────┴───────┐
-                           │  interaction  │
-                           │  subjectA/B   │
-                           └──────────────┘
+┌──────────────┐    ┌─────────────────────────────┐
+│identification │───▶│        occurrence            │
+│  #taxon       │    │  #location  #imageEmbed      │
+└──────────────┘    └─────────────────────────────┘
 ```
 
 **Key design decisions:**
@@ -212,125 +199,6 @@ The identification contains an embedded `#taxon` object following the [Darwin Co
 
 ---
 
-## Interaction
-
-**NSID:** `org.rwell.test.interaction`
-
-A species interaction documenting an ecological relationship between organisms. Each interaction links two subjects (which can reference existing occurrence records or specify taxa directly) with a typed relationship.
-
-This record type is designed for compatibility with [GloBI (Global Biotic Interactions)](https://www.globalbioticinteractions.org/).
-
-### Example
-
-```json
-{
-  "subjectA": {
-    "occurrence": {
-      "uri": "at://did:plc:abc.../org.rwell.test.occurrence/3k...",
-      "cid": "bafyrei..."
-    },
-    "subjectIndex": 0
-  },
-  "subjectB": {
-    "occurrence": {
-      "uri": "at://did:plc:abc.../org.rwell.test.occurrence/3k...",
-      "cid": "bafyrei..."
-    },
-    "subjectIndex": 1
-  },
-  "interactionType": "pollination",
-  "direction": "AtoB",
-  "confidence": "high",
-  "comment": "Bee actively collecting pollen from flower",
-  "createdAt": "2024-01-15T11:30:00Z"
-}
-```
-
-### Record Fields
-
-| Field | Type | Required | Description |
-|-------|------|----------|-------------|
-| `subjectA` | [`#interactionSubject`](#interaction-subject-object) | **yes** | First subject (actor) |
-| `subjectB` | [`#interactionSubject`](#interaction-subject-object) | **yes** | Second subject (recipient) |
-| `interactionType` | `string` | **yes** | Type of ecological interaction |
-| `direction` | `string` | **yes** | Direction: `AtoB`, `BtoA`, or `bidirectional` |
-| `createdAt` | `datetime` | **yes** | Record creation timestamp |
-| `confidence` | `string` | no | Confidence level. Default: `medium` |
-| `comment` | `string` | no | Notes about the interaction (max: 3000) |
-
-**`interactionType` known values:** `predation`, `pollination`, `parasitism`, `herbivory`, `symbiosis`, `mutualism`, `competition`, `shelter`, `transportation`, `oviposition`, `seed_dispersal`
-
-**`direction` values (closed enum):** `AtoB`, `BtoA`, `bidirectional`
-
-### Interaction Subject Object
-
-`#interactionSubject` — a subject in an interaction, either referencing an existing occurrence or specifying a taxon directly.
-
-| Field | Type | Required | Description |
-|-------|------|----------|-------------|
-| `occurrence` | `com.atproto.repo.strongRef` | no | Reference to an existing occurrence |
-| `subjectIndex` | `integer` | no | Index within the occurrence (0-99). Default: `0` |
-| `taxon` | `org.rwell.test.identification#taxon` | no | Taxon info (for unobserved subjects) |
-
----
-
-## Comment
-
-**NSID:** `org.rwell.test.comment`
-
-A discussion comment on an observation. Supports threaded replies via the optional `replyTo` field.
-
-### Example
-
-```json
-{
-  "subject": {
-    "uri": "at://did:plc:abc.../org.rwell.test.occurrence/3k...",
-    "cid": "bafyrei..."
-  },
-  "body": "Great find! The leaf shape confirms this is E. californica rather than E. caespitosa.",
-  "createdAt": "2024-01-15T12:00:00Z"
-}
-```
-
-### Record Fields
-
-| Field | Type | Required | Description |
-|-------|------|----------|-------------|
-| `subject` | `com.atproto.repo.strongRef` | **yes** | Reference to the observation |
-| `body` | `string` | **yes** | Comment text (max: 3000) |
-| `createdAt` | `datetime` | **yes** | Timestamp |
-| `replyTo` | `com.atproto.repo.strongRef` | no | Parent comment for threading |
-
----
-
-## Like
-
-**NSID:** `org.rwell.test.like`
-
-Appreciation of an observation.
-
-### Example
-
-```json
-{
-  "subject": {
-    "uri": "at://did:plc:abc.../org.rwell.test.occurrence/3k...",
-    "cid": "bafyrei..."
-  },
-  "createdAt": "2024-01-15T12:30:00Z"
-}
-```
-
-### Record Fields
-
-| Field | Type | Required | Description |
-|-------|------|----------|-------------|
-| `subject` | `com.atproto.repo.strongRef` | **yes** | Reference to the liked observation |
-| `createdAt` | `datetime` | **yes** | Timestamp |
-
----
-
 ## Darwin Core Alignment
 
 These lexicons are designed for interoperability with [Darwin Core](https://dwc.tdwg.org/) (DwC) and [GBIF](https://www.gbif.org/). Key mappings:
@@ -370,7 +238,6 @@ Records reference each other using `com.atproto.repo.strongRef`, which contains 
 - [AT Protocol Lexicon Spec](https://atproto.com/specs/lexicon) — How lexicons work
 - [Darwin Core Standard](https://dwc.tdwg.org/) — Biodiversity data standard
 - [GBIF](https://www.gbif.org/) — Global Biodiversity Information Facility
-- [GloBI](https://www.globalbioticinteractions.org/) — Global Biotic Interactions database
 
 ## License
 

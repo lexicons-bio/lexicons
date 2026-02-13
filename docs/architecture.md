@@ -5,25 +5,12 @@
 The lexicons follow a **star schema** with the occurrence record at the center:
 
 ```
-                    ┌─────────────────────┐
-                    │       like          │
-                    │ subject: strongRef  │
-                    └─────────┬───────────┘
-                              │ references
-                              ▼
-┌─────────────────┐    ┌─────────────┐    ┌─────────────────┐
-│  identification  │──▶│  occurrence  │◀──│     comment      │
-│  subject: ref    │    │  (central)  │    │  subject: ref    │
-│  taxon: #taxon   │    │  #location  │    │  replyTo: ref    │
-└─────────────────┘    │  #imageEmbed│    └─────────────────┘
-        ▲               └──────┬──────┘
-        │ reuses #taxon        │
-┌───────┴─────────┐            │ references
-│   interaction    │◀──────────┘
-│  subjectA: ref   │
-│  subjectB: ref   │
-│  #interactionSubject │
-└─────────────────┘
+┌─────────────────┐    ┌─────────────┐
+│  identification  │──▶│  occurrence  │
+│  subject: ref    │    │  (central)  │
+│  taxon: #taxon   │    │  #location  │
+└─────────────────┘    │  #imageEmbed│
+                        └─────────────┘
 ```
 
 Every sidecar record references an occurrence via `com.atproto.repo.strongRef` — a pair of URI + CID that creates an immutable, content-addressed link.
@@ -48,18 +35,14 @@ This enables:
 
 The `#taxon` object is defined within the identification lexicon and contains the full Darwin Core Taxon class hierarchy (kingdom through genus, plus scientific name and authorship). This follows the [GBIF Identification History extension](https://rs.gbif.org/extension/dwc/identification.xml) pattern where each identification carries its own snapshot of the taxon.
 
-The interaction lexicon cross-references this type via `org.rwell.test.identification#taxon`, avoiding duplication.
-
 ### `knownValues` Over `enum`
 
 Per the [AT Protocol Lexicon Style Guide](https://atproto.com/guides/lexicon-style-guide) and [Lexinomicon](https://docs.google.com/document/d/1goj4pSPH-EKMtP3Y2vDIEKbLFEVGdeoKqpnmRH9S4t0/) community guide, we use `knownValues` (open sets) instead of `enum` (closed sets) for most string fields:
 
 - **`knownValues`**: Validators accept any string, but suggest these specific values. Forward-compatible — new values can be added without breaking existing clients.
-- **`enum`**: Validators reject unknown values. Used only when the set is truly closed (e.g., interaction `direction`: `AtoB`, `BtoA`, `bidirectional`).
+- **`enum`**: Validators reject unknown values. Used only when the set is truly closed.
 
-Fields using `knownValues`: `basisOfRecord`, `occurrenceStatus`, `sex`, `lifeStage`, `taxonRank`, `interactionType`, `confidence`, `identificationQualifier`
-
-Fields using `enum`: `direction` (truly exhaustive set)
+Fields using `knownValues`: `basisOfRecord`, `occurrenceStatus`, `sex`, `lifeStage`, `taxonRank`, `confidence`, `identificationQualifier`
 
 ### `strongRef` for Immutable References
 
@@ -80,9 +63,6 @@ The current namespace `org.rwell.test.*` is experimental. The planned production
 ```
 org.rwell.test.occurrence        →  bio.sky.observation.occurrence
 org.rwell.test.identification    →  bio.sky.observation.identification
-org.rwell.test.interaction       →  bio.sky.observation.interaction
-org.rwell.test.comment           →  bio.sky.observation.comment
-org.rwell.test.like              →  bio.sky.feed.like
 ```
 
 The migration will happen once the `bio.sky` domain is secured and DNS authority is configured for [NSID verification](https://atproto.com/specs/nsid).
