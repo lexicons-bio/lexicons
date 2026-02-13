@@ -120,6 +120,19 @@
             "type": "string",
             "description": "A category or description of the habitat in which the event occurred (Darwin Core dwc:habitat).",
             "maxLength": 256
+          },
+          "establishmentMeans": {
+            "type": "string",
+            "description": "The means by which the organism was established at the location (Darwin Core dwc:establishmentMeans).",
+            "knownValues": [
+              "NATIVE",
+              "INTRODUCED",
+              "NATIVE_REINTRODUCED",
+              "INTRODUCED_ASSISTED_COLONISATION",
+              "VAGRANT",
+              "UNCERTAIN"
+            ],
+            "maxLength": 64
           }
         }
       }

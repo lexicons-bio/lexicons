@@ -19,6 +19,7 @@ Field-by-field mapping between atbio lexicons and [Darwin Core](https://dwc.tdwg
 | `blobs` | dwc:associatedMedia | AT Protocol blob references |
 | `license` | dcterms:license | SPDX identifiers (CC0, CC-BY, etc.) |
 | `habitat` | dwc:habitat | Free-text habitat description |
+| `establishmentMeans` | dwc:establishmentMeans | GBIF vocabulary: `NATIVE`, `INTRODUCED`, etc. |
 | (AT Protocol URI) | dwc:occurrenceID | `at://did:plc:.../org.rwell.test.occurrence/...` |
 | (repo owner DID) | dwc:recordedBy | Derived from AT Protocol identity |
 
@@ -82,7 +83,6 @@ Darwin Core terms that could be added in future versions:
 |-----------------|----------|----------|
 | dwc:behavior | Occurrence | Nice-to-have |
 | dwc:reproductiveCondition | Occurrence | Nice-to-have |
-| dwc:establishmentMeans | Occurrence | Nice-to-have |
 | dwc:samplingProtocol | Event | Nice-to-have |
 | dwc:identificationVerificationStatus | Identification | Nice-to-have |
 | dwc:specificEpithet | Taxon | Nice-to-have |
