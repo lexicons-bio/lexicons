@@ -1,1 +1,4 @@
 docs/*.html
+node_modules/
+dist/
+src/data/dwc-terms.json
