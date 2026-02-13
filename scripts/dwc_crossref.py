@@ -185,58 +185,31 @@ def main():
             unimplemented[name] = term
 
     # --- Print report ---
-    print("=" * 70)
-    print("Darwin Core Cross-Reference Report")
-    print("=" * 70)
+    total_relevant = len(mapped) + len(unimplemented)
+    pct = (len(mapped) / total_relevant * 100) if total_relevant else 0
 
-    # Lexicon structure
-    print("\n## Lexicon files\n")
-    for path, defs in all_lexicon_fields.items():
-        print(f"  {path}")
-        for def_name, fields in defs.items():
-            print(f"    #{def_name}: {len(fields)} fields")
+    print(f"DwC coverage: {pct:.0f}% ({len(mapped)} mapped, {len(unimplemented)} unimplemented, {len(unmapped)} extensions)\n")
 
     # Mapped fields
-    print(f"\n## Mapped to Darwin Core ({len(mapped)} fields)\n")
+    print("Mapped")
     by_class: dict[str, list[tuple[str, dict]]] = {}
     for field, term in sorted(mapped.items()):
-        cls = term["class"]
-        by_class.setdefault(cls, []).append((field, term))
-
+        by_class.setdefault(term["class"], []).append((field, term))
     for cls in sorted(by_class):
-        print(f"  [{cls}]")
-        for field, term in by_class[cls]:
-            arrow = f"{field} -> {term['name']}" if field != term["name"] else field
-            print(f"    {arrow:<45s} {term['term_iri']}")
-        print()
+        names = [f"{f} -> {t['name']}" if f != t["name"] else f for f, t in by_class[cls]]
+        print(f"  {cls}: {', '.join(names)}")
 
-    # Unmapped lexicon fields
-    print(f"## AT Protocol / extension fields ({len(unmapped)} fields)\n")
-    for field in sorted(unmapped):
-        print(f"    {field}")
+    # Unmapped
+    print(f"\nExtensions (no DwC equivalent)")
+    print(f"  {', '.join(sorted(unmapped))}")
 
-    # Unimplemented DwC terms
-    print(f"\n## Unimplemented DwC terms in relevant classes ({len(unimplemented)} terms)\n")
+    # Unimplemented — counts only
+    print(f"\nUnimplemented DwC terms by class")
     by_class2: dict[str, list[dict]] = {}
     for term in unimplemented.values():
         by_class2.setdefault(term["class"], []).append(term)
-
     for cls in sorted(by_class2):
-        print(f"  [{cls}] ({len(by_class2[cls])} terms)")
-        for term in sorted(by_class2[cls], key=lambda t: t["name"]):
-            print(f"    {term['name']:<45s} {term['term_iri']}")
-        print()
-
-    # Summary
-    total_relevant = len(mapped) + len(unimplemented)
-    pct = (len(mapped) / total_relevant * 100) if total_relevant else 0
-    print("=" * 70)
-    print("Summary")
-    print("=" * 70)
-    print(f"  Lexicon fields mapped to DwC:       {len(mapped)}")
-    print(f"  AT Protocol / extension fields:      {len(unmapped)}")
-    print(f"  Unimplemented relevant DwC terms:    {len(unimplemented)}")
-    print(f"  Coverage of relevant DwC terms:      {pct:.0f}% ({len(mapped)}/{total_relevant})")
+        print(f"  {cls}: {len(by_class2[cls])} terms")
 
 
 if __name__ == "__main__":
