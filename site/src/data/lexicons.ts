@@ -81,7 +81,7 @@ export const MODELS: ModelConfig[] = [
           decimalLongitude: "-122.2727",
           coordinateUncertaintyInMeters: 15,
         },
-        blobs: [
+        associatedMedia: [
           {
             image: {
               $type: "blob",
@@ -152,7 +152,7 @@ export const MODELS: ModelConfig[] = [
 export const FIELD_TO_DWC: Record<string, string> = {
   occurrenceRemarks: "occurrenceRemarks",
   comment: "identificationRemarks",
-  blobs: "associatedMedia",
+  associatedMedia: "associatedMedia",
 };
 
 /** Fields that are AT Protocol infrastructure (no DwC mapping) */
