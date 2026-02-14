@@ -20,7 +20,7 @@
             "ref": "#taxon",
             "description": "The taxonomic determination being proposed (Darwin Core Taxon class)."
           },
-          "comment": {
+          "identificationRemarks": {
             "type": "string",
             "description": "Explanation or reasoning for this identification (Darwin Core dwc:identificationRemarks).",
             "maxLength": 3000

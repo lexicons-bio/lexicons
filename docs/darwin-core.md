@@ -33,7 +33,7 @@ Additional Darwin Core fields can be added to the schemas as community demand de
 
 | Lexicon Field | Darwin Core Term | Notes |
 |---------------|-----------------|-------|
-| `comment` | dwc:identificationRemarks | — |
+| `identificationRemarks` | dwc:identificationRemarks | — |
 | (repo commit timestamp) | dwc:dateIdentified | Derived from AT Protocol repo |
 | (AT Protocol URI) | dwc:identificationID | — |
 | (repo owner DID) | dwc:identifiedBy | — |

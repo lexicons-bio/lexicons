@@ -139,7 +139,7 @@ export const MODELS: ModelConfig[] = [
           family: "Corvidae",
           genus: "Aphelocoma",
         },
-        comment:
+        identificationRemarks:
           "Blue head and wings, white eyebrow, gray-brown back — classic California Scrub-Jay",
       },
       null,
@@ -151,7 +151,7 @@ export const MODELS: ModelConfig[] = [
 /** Lexicon field -> DwC term_localName (when names differ) */
 export const FIELD_TO_DWC: Record<string, string> = {
   occurrenceRemarks: "occurrenceRemarks",
-  comment: "identificationRemarks",
+  identificationRemarks: "identificationRemarks",
   associatedMedia: "associatedMedia",
 };
 
