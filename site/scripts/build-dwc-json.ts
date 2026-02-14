@@ -10,9 +10,10 @@ import { resolve, dirname } from "node:path";
 import { fileURLToPath } from "node:url";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
-const ROOT = resolve(__dirname, "..");
-const CSV_PATH = resolve(ROOT, "schemas/dwc/term_versions.csv");
-const OUT_PATH = resolve(ROOT, "src/data/dwc-terms.json");
+const SITE_ROOT = resolve(__dirname, "..");
+const REPO_ROOT = resolve(SITE_ROOT, "..");
+const CSV_PATH = resolve(REPO_ROOT, "schemas/dwc/term_versions.csv");
+const OUT_PATH = resolve(SITE_ROOT, "src/data/dwc-terms.json");
 
 interface DwcTerm {
   name: string;

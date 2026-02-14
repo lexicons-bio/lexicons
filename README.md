@@ -16,12 +16,13 @@ These lexicons define the record types used by [Observ.ing](https://observ.ing),
 ## Development
 
 ```bash
+cd site
 npm install
 npm run dev      # Start dev server
 npm run build    # Build for production
 ```
 
-The site is built with Vite + React + MUI. Lexicon JSON files live in `lexicons/` and Darwin Core terms are sourced from `schemas/dwc/term_versions.csv`.
+The site is built with Vite + React + MUI and lives in `site/`. Lexicon JSON files live in `lexicons/` and Darwin Core terms are sourced from `schemas/dwc/term_versions.csv`.
 
 ## License
 

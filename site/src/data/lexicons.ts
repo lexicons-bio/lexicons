@@ -1,5 +1,5 @@
-import occurrenceJson from "../../lexicons/bio/lexicons/temp/occurrence.json";
-import identificationJson from "../../lexicons/bio/lexicons/temp/identification.json";
+import occurrenceJson from "../../../lexicons/bio/lexicons/temp/occurrence.json";
+import identificationJson from "../../../lexicons/bio/lexicons/temp/identification.json";
 
 export interface LexiconDef {
   type: string;

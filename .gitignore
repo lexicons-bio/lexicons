@@ -1,5 +1,6 @@
 docs/*.html
-node_modules/
-dist/
-src/data/dwc-terms.json
+site/node_modules/
+site/dist/
+site/src/data/dwc-terms.json
+site/tsconfig.tsbuildinfo
 .DS_Store

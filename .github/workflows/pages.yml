@@ -24,17 +24,20 @@ jobs:
         with:
           node-version: "20"
           cache: "npm"
+          cache-dependency-path: site/package-lock.json
 
       - name: Install dependencies
         run: npm ci
+        working-directory: site
 
       - name: Build site
         run: npm run build
+        working-directory: site
 
       - name: Prepare site
         run: |
           mkdir -p _site
-          cp -r dist/* _site/
+          cp -r site/dist/* _site/
 
       - uses: actions/upload-pages-artifact@v3
 
