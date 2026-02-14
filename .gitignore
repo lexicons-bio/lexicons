@@ -1,4 +1,3 @@
-docs/*.html
 site/node_modules/
 site/dist/
 site/src/data/dwc-terms.json

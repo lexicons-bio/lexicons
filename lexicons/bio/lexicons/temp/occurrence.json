@@ -20,11 +20,6 @@
             "ref": "#location",
             "description": "Geographic location information for the observation."
           },
-          "verbatimLocality": {
-            "type": "string",
-            "description": "The original textual description of the place (Darwin Core dwc:verbatimLocality).",
-            "maxLength": 1024
-          },
           "blobs": {
             "type": "array",
             "description": "Array of image references documenting the observation.",
@@ -50,94 +45,6 @@
               "CC-BY-NC-SA-4.0"
             ],
             "maxLength": 32
-          },
-          "recordedBy": {
-            "type": "array",
-            "description": "DIDs of co-observers who participated in this observation. The record creator is the primary observer.",
-            "items": {
-              "type": "string"
-            },
-            "maxLength": 10
-          },
-          "basisOfRecord": {
-            "type": "string",
-            "description": "The specific nature of the data record (Darwin Core dwc:basisOfRecord).",
-            "knownValues": [
-              "human-observation",
-              "machine-observation",
-              "observation"
-            ],
-            "default": "human-observation",
-            "maxLength": 32
-          },
-          "occurrenceStatus": {
-            "type": "string",
-            "description": "A statement about the presence or absence of a taxon at a location (Darwin Core dwc:occurrenceStatus).",
-            "knownValues": [
-              "present",
-              "absent"
-            ],
-            "default": "present",
-            "maxLength": 16
-          },
-          "individualCount": {
-            "type": "integer",
-            "description": "The number of individuals observed (Darwin Core dwc:individualCount).",
-            "minimum": 1
-          },
-          "sex": {
-            "type": "string",
-            "description": "The sex of the organism(s) (Darwin Core dwc:sex).",
-            "knownValues": [
-              "male",
-              "female",
-              "hermaphrodite"
-            ],
-            "maxLength": 32
-          },
-          "lifeStage": {
-            "type": "string",
-            "description": "The age class or life stage of the organism(s) (Darwin Core dwc:lifeStage).",
-            "knownValues": [
-              "adult",
-              "juvenile",
-              "larva",
-              "pupa",
-              "egg",
-              "embryo",
-              "nymph",
-              "seedling",
-              "subadult"
-            ],
-            "maxLength": 32
-          },
-          "habitat": {
-            "type": "string",
-            "description": "A category or description of the habitat in which the event occurred (Darwin Core dwc:habitat).",
-            "maxLength": 256
-          },
-          "establishmentMeans": {
-            "type": "string",
-            "description": "The means by which the organism was established at the location (Darwin Core dwc:establishmentMeans).",
-            "knownValues": [
-              "native",
-              "introduced",
-              "native-reintroduced",
-              "introduced-assisted-colonisation",
-              "vagrant",
-              "uncertain"
-            ],
-            "maxLength": 64
-          },
-          "behavior": {
-            "type": "string",
-            "description": "The behavior shown by the organism at the time of the observation (Darwin Core dwc:behavior).",
-            "maxLength": 256
-          },
-          "caste": {
-            "type": "string",
-            "description": "Categorisation of individuals for eusocial species (Darwin Core dwc:caste).",
-            "maxLength": 64
           }
         }
       }
@@ -159,69 +66,6 @@
           "type": "integer",
           "description": "The horizontal distance (in meters) from the given coordinates describing the smallest circle containing the whole of the Location (Darwin Core dwc:coordinateUncertaintyInMeters).",
           "minimum": 0
-        },
-        "geodeticDatum": {
-          "type": "string",
-          "description": "The ellipsoid, geodetic datum, or spatial reference system used (Darwin Core dwc:geodeticDatum). Defaults to WGS84.",
-          "default": "WGS84",
-          "maxLength": 64
-        },
-        "continent": {
-          "type": "string",
-          "description": "The name of the continent (Darwin Core dwc:continent).",
-          "knownValues": ["africa", "antarctica", "asia", "europe", "north-america", "oceania", "south-america"],
-          "maxLength": 32
-        },
-        "country": {
-          "type": "string",
-          "description": "The name of the country or major administrative unit (Darwin Core dwc:country).",
-          "maxLength": 128
-        },
-        "countryCode": {
-          "type": "string",
-          "description": "The standard code for the country (Darwin Core dwc:countryCode). ISO 3166-1-alpha-2.",
-          "maxLength": 2
-        },
-        "stateProvince": {
-          "type": "string",
-          "description": "The name of the next smaller administrative region than country (Darwin Core dwc:stateProvince).",
-          "maxLength": 128
-        },
-        "county": {
-          "type": "string",
-          "description": "The full, unabbreviated name of the next smaller administrative region than stateProvince (Darwin Core dwc:county).",
-          "maxLength": 128
-        },
-        "municipality": {
-          "type": "string",
-          "description": "The full, unabbreviated name of the next smaller administrative region than county (Darwin Core dwc:municipality).",
-          "maxLength": 128
-        },
-        "locality": {
-          "type": "string",
-          "description": "The specific description of the place (Darwin Core dwc:locality).",
-          "maxLength": 512
-        },
-        "waterBody": {
-          "type": "string",
-          "description": "The name of the water body in which the location occurs (Darwin Core dwc:waterBody).",
-          "maxLength": 128
-        },
-        "minimumElevationInMeters": {
-          "type": "string",
-          "description": "The lower limit of the range of elevation in meters (Darwin Core dwc:minimumElevationInMeters)."
-        },
-        "maximumElevationInMeters": {
-          "type": "string",
-          "description": "The upper limit of the range of elevation in meters (Darwin Core dwc:maximumElevationInMeters)."
-        },
-        "minimumDepthInMeters": {
-          "type": "string",
-          "description": "The lesser depth of a range of depth below the local surface in meters (Darwin Core dwc:minimumDepthInMeters)."
-        },
-        "maximumDepthInMeters": {
-          "type": "string",
-          "description": "The greater depth of a range of depth below the local surface in meters (Darwin Core dwc:maximumDepthInMeters)."
         }
       }
     },

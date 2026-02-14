@@ -15,44 +15,15 @@
             "ref": "com.atproto.repo.strongRef",
             "description": "A strong reference (CID + URI) to the observation being identified."
           },
-          "subjectIndex": {
-            "type": "integer",
-            "description": "Index of the subject within the occurrence being identified. When multiple organisms are photographed together (e.g., butterfly on a flower), each gets a unique index starting from 0. Creating an identification with a new subjectIndex implicitly creates that subject.",
-            "minimum": 0,
-            "maximum": 99,
-            "default": 0
-          },
           "taxon": {
             "type": "ref",
             "ref": "#taxon",
             "description": "The taxonomic determination being proposed (Darwin Core Taxon class)."
           },
-          "taxonId": {
-            "type": "string",
-            "description": "[DEPRECATED: Use kingdom + scientificName for taxon resolution] External taxon identifier (e.g., gbif:2878688). Prefixed with source.",
-            "maxLength": 64
-          },
           "comment": {
             "type": "string",
             "description": "Explanation or reasoning for this identification (Darwin Core dwc:identificationRemarks).",
             "maxLength": 3000
-          },
-          "isAgreement": {
-            "type": "boolean",
-            "description": "If true, this identification agrees with the current community ID rather than proposing a new one.",
-            "default": false
-          },
-          "identificationQualifier": {
-            "type": "string",
-            "description": "A brief phrase or standard term to qualify the identification when doubts exist (Darwin Core dwc:identificationQualifier). For example, 'cf.' (compare with) or 'aff.' (has affinity with).",
-            "knownValues": ["cf.", "aff."],
-            "maxLength": 16
-          },
-          "confidence": {
-            "type": "string",
-            "description": "The identifier's confidence level in this identification.",
-            "knownValues": ["low", "medium", "high"],
-            "default": "medium"
           }
         }
       }
