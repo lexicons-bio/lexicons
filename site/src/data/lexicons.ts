@@ -74,7 +74,7 @@ export const MODELS: ModelConfig[] = [
       {
         $type: "bio.lexicons.temp.occurrence",
         eventDate: "2024-06-12T08:45:00Z",
-        notes: "Three individuals foraging on fallen acorns",
+        occurrenceRemarks: "Three individuals foraging on fallen acorns",
         license: "CC-BY-4.0",
         location: {
           decimalLatitude: "37.8716",
@@ -150,7 +150,7 @@ export const MODELS: ModelConfig[] = [
 
 /** Lexicon field -> DwC term_localName (when names differ) */
 export const FIELD_TO_DWC: Record<string, string> = {
-  notes: "occurrenceRemarks",
+  occurrenceRemarks: "occurrenceRemarks",
   comment: "identificationRemarks",
   blobs: "associatedMedia",
 };

@@ -11,7 +11,7 @@ Additional Darwin Core fields can be added to the schemas as community demand de
 | Lexicon Field | Darwin Core Term | Notes |
 |---------------|-----------------|-------|
 | `eventDate` | dwc:eventDate | ISO 8601 datetime |
-| `notes` | dwc:occurrenceRemarks | — |
+| `occurrenceRemarks` | dwc:occurrenceRemarks | — |
 | `blobs` | dwc:associatedMedia | AT Protocol blob references |
 | `license` | dcterms:license | SPDX identifiers (CC0, CC-BY, etc.) |
 | (AT Protocol URI) | dwc:occurrenceID | `at://did:plc:.../bio.lexicons.temp.occurrence/...` |

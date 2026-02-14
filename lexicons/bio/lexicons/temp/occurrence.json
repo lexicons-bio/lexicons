@@ -29,9 +29,9 @@
             },
             "maxLength": 10
           },
-          "notes": {
+          "occurrenceRemarks": {
             "type": "string",
-            "description": "Additional notes or comments about the observation.",
+            "description": "Additional notes or comments about the observation (Darwin Core dwc:occurrenceRemarks).",
             "maxLength": 3000
           },
           "license": {
