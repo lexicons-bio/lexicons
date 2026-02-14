@@ -80,15 +80,23 @@ export default function Layout() {
 
         <Box
           component="footer"
-          sx={{ borderTop: 1, borderColor: "divider", mt: 6, pt: 2, display: "flex", gap: 3, flexWrap: "wrap" }}
+          sx={{ borderTop: 1, borderColor: "divider", mt: 6, pt: 2 }}
         >
-          {footerLinks.map(({ href, label }) => (
-            <Typography key={href} variant="body2">
-              <MuiLink href={href} target="_blank" rel="noopener" color="textSecondary">
-                {label}
-              </MuiLink>
-            </Typography>
-          ))}
+          <Box sx={{ display: "flex", gap: 3, flexWrap: "wrap", mb: 1 }}>
+            {footerLinks.map(({ href, label }) => (
+              <Typography key={href} variant="body2">
+                <MuiLink href={href} target="_blank" rel="noopener" color="textSecondary">
+                  {label}
+                </MuiLink>
+              </Typography>
+            ))}
+          </Box>
+          <Typography variant="caption" color="textSecondary">
+            Lexicon schemas licensed under{" "}
+            <MuiLink href="https://creativecommons.org/publicdomain/zero/1.0/" target="_blank" rel="noopener">
+              CC0 1.0 Universal
+            </MuiLink>
+          </Typography>
         </Box>
       </Container>
     </>
