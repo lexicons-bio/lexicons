@@ -2,6 +2,8 @@
 
 Field-by-field mapping between lexicons.bio lexicons and [Darwin Core](https://dwc.tdwg.org/) (DwC) / [GBIF](https://www.gbif.org/) standards.
 
+Additional Darwin Core fields can be added to the schemas as community demand demonstrates need.
+
 ## Occurrence
 
 `bio.lexicons.temp.occurrence` maps to [dwc:Occurrence](https://dwc.tdwg.org/terms/#occurrence) + [dwc:Event](https://dwc.tdwg.org/terms/#event) + [dwc:Location](https://dwc.tdwg.org/terms/#location).
@@ -9,19 +11,9 @@ Field-by-field mapping between lexicons.bio lexicons and [Darwin Core](https://d
 | Lexicon Field | Darwin Core Term | Notes |
 |---------------|-----------------|-------|
 | `eventDate` | dwc:eventDate | ISO 8601 datetime |
-| `basisOfRecord` | dwc:basisOfRecord | Default: `human-observation` |
-| `occurrenceStatus` | dwc:occurrenceStatus | Default: `present` |
-| `individualCount` | dwc:individualCount | — |
-| `sex` | dwc:sex | `male`, `female`, `hermaphrodite` |
-| `lifeStage` | dwc:lifeStage | `adult`, `juvenile`, `larva`, etc. |
-| `verbatimLocality` | dwc:verbatimLocality | Free-text place description |
 | `notes` | dwc:occurrenceRemarks | — |
 | `blobs` | dwc:associatedMedia | AT Protocol blob references |
 | `license` | dcterms:license | SPDX identifiers (CC0, CC-BY, etc.) |
-| `habitat` | dwc:habitat | Free-text habitat description |
-| `establishmentMeans` | dwc:establishmentMeans | `native`, `introduced`, etc. |
-| `behavior` | dwc:behavior | Free-text behavior description |
-| `caste` | dwc:caste | For eusocial species (e.g., `queen`, `worker`) |
 | (AT Protocol URI) | dwc:occurrenceID | `at://did:plc:.../bio.lexicons.temp.occurrence/...` |
 | (repo owner DID) | dwc:recordedBy | Derived from AT Protocol identity |
 
@@ -32,19 +24,6 @@ Field-by-field mapping between lexicons.bio lexicons and [Darwin Core](https://d
 | `location.decimalLatitude` | dwc:decimalLatitude | Stored as string for precision |
 | `location.decimalLongitude` | dwc:decimalLongitude | Stored as string for precision |
 | `location.coordinateUncertaintyInMeters` | dwc:coordinateUncertaintyInMeters | — |
-| `location.geodeticDatum` | dwc:geodeticDatum | Default: `WGS84` |
-| `location.continent` | dwc:continent | — |
-| `location.country` | dwc:country | — |
-| `location.countryCode` | dwc:countryCode | ISO 3166-1 alpha-2 |
-| `location.stateProvince` | dwc:stateProvince | — |
-| `location.county` | dwc:county | — |
-| `location.municipality` | dwc:municipality | — |
-| `location.locality` | dwc:locality | — |
-| `location.waterBody` | dwc:waterBody | — |
-| `location.minimumElevationInMeters` | dwc:minimumElevationInMeters | — |
-| `location.maximumElevationInMeters` | dwc:maximumElevationInMeters | — |
-| `location.minimumDepthInMeters` | dwc:minimumDepthInMeters | — |
-| `location.maximumDepthInMeters` | dwc:maximumDepthInMeters | — |
 
 ## Identification
 
@@ -56,11 +35,9 @@ Field-by-field mapping between lexicons.bio lexicons and [Darwin Core](https://d
 |---------------|-----------------|-------|
 | `comment` | dwc:identificationRemarks | — |
 | (repo commit timestamp) | dwc:dateIdentified | Derived from AT Protocol repo |
-| `identificationQualifier` | dwc:identificationQualifier | `cf.`, `aff.` |
 | (AT Protocol URI) | dwc:identificationID | — |
 | (repo owner DID) | dwc:identifiedBy | — |
-| `isAgreement` | — | Observ.ing extension for community consensus |
-| `confidence` | — | Observ.ing extension |
+| `isAgreement` | — | Extension for community consensus |
 
 ### Taxon Fields
 
@@ -79,15 +56,26 @@ Field-by-field mapping between lexicons.bio lexicons and [Darwin Core](https://d
 
 ## Not Yet Implemented
 
-Darwin Core terms that could be added in future versions:
+Darwin Core terms that could be added in future versions as community demand demonstrates need:
 
-| Darwin Core Term | Category | Priority |
-|-----------------|----------|----------|
-| dwc:reproductiveCondition | Occurrence | Nice-to-have |
-| dwc:samplingProtocol | Event | Nice-to-have |
-| dwc:identificationVerificationStatus | Identification | Nice-to-have |
-| dwc:specificEpithet | Taxon | Nice-to-have |
-| dwc:infraspecificEpithet | Taxon | Nice-to-have |
+| Darwin Core Term | Category | Notes |
+|-----------------|----------|-------|
+| dwc:basisOfRecord | Record-level | Appview can default to `HumanObservation` for DwC export |
+| dwc:occurrenceStatus | Occurrence | Nearly always `present` |
+| dwc:individualCount | Occurrence | — |
+| dwc:sex | Occurrence | — |
+| dwc:lifeStage | Occurrence | — |
+| dwc:habitat | Event | — |
+| dwc:establishmentMeans | Occurrence | — |
+| dwc:behavior | Occurrence | — |
+| dwc:verbatimLocality | Location | — |
+| dwc:geodeticDatum | Location | WGS84 assumed by default |
+| dwc:country / dwc:countryCode | Location | Reverse-geocoded by appview |
+| dwc:stateProvince / dwc:county | Location | Reverse-geocoded by appview |
+| dwc:identificationQualifier | Identification | `cf.`, `aff.` |
+| dwc:reproductiveCondition | Occurrence | — |
+| dwc:samplingProtocol | Event | — |
+| dwc:specificEpithet | Taxon | — |
 
 ## References
 

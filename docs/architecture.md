@@ -42,7 +42,7 @@ Per the [AT Protocol Lexicon Style Guide](https://atproto.com/guides/lexicon-sty
 - **`knownValues`**: Validators accept any string, but suggest these specific values. Forward-compatible — new values can be added without breaking existing clients.
 - **`enum`**: Validators reject unknown values. Used only when the set is truly closed.
 
-Fields using `knownValues`: `basisOfRecord`, `occurrenceStatus`, `sex`, `lifeStage`, `taxonRank`, `confidence`, `identificationQualifier`
+Fields using `knownValues`: `license`, `taxonRank`
 
 ### `strongRef` for Immutable References
 

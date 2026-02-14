@@ -62,11 +62,9 @@ export const MODELS: ModelConfig[] = [
       {
         $type: "bio.lexicons.temp.occurrence",
         eventDate: "2024-06-12T08:45:00Z",
-        basisOfRecord: "human-observation",
         location: {
           decimalLatitude: "37.8716",
           decimalLongitude: "-122.2727",
-          geodeticDatum: "WGS84",
         },
       },
       null,
@@ -76,24 +74,12 @@ export const MODELS: ModelConfig[] = [
       {
         $type: "bio.lexicons.temp.occurrence",
         eventDate: "2024-06-12T08:45:00Z",
-        basisOfRecord: "human-observation",
-        occurrenceStatus: "present",
-        individualCount: 3,
-        lifeStage: "adult",
-        sex: "female",
-        habitat: "Oak woodland edge near seasonal creek",
         notes: "Three individuals foraging on fallen acorns",
         license: "CC-BY-4.0",
         location: {
           decimalLatitude: "37.8716",
           decimalLongitude: "-122.2727",
           coordinateUncertaintyInMeters: 15,
-          geodeticDatum: "WGS84",
-          country: "United States",
-          countryCode: "US",
-          stateProvince: "California",
-          county: "Alameda",
-          locality: "Strawberry Canyon, UC Berkeley",
         },
         blobs: [
           {
@@ -103,7 +89,7 @@ export const MODELS: ModelConfig[] = [
               mimeType: "image/jpeg",
               size: 204800,
             },
-            alt: "Western scrub-jay perched on oak branch",
+            alt: "California Scrub-Jay perched on oak branch",
             aspectRatio: { width: 4032, height: 3024 },
           },
         ],
@@ -153,7 +139,6 @@ export const MODELS: ModelConfig[] = [
           family: "Corvidae",
           genus: "Aphelocoma",
         },
-        confidence: "high",
         comment:
           "Blue head and wings, white eyebrow, gray-brown back — classic California Scrub-Jay",
         isAgreement: false,
@@ -169,16 +154,12 @@ export const FIELD_TO_DWC: Record<string, string> = {
   notes: "occurrenceRemarks",
   comment: "identificationRemarks",
   blobs: "associatedMedia",
-  recordedBy: "recordedBy",
 };
 
 /** Fields that are AT Protocol infrastructure (no DwC mapping) */
 export const ATPROTO_FIELDS = new Set([
   "subject",
-  "subjectIndex",
   "isAgreement",
-  "confidence",
-  "taxonId",
   "taxon",
   "location",
   "image",
@@ -191,7 +172,6 @@ export const ATPROTO_FIELDS = new Set([
 /** GBIF publishing requirements */
 export const GBIF_REQUIRED = new Set([
   "occurrenceID",
-  "basisOfRecord",
   "scientificName",
   "eventDate",
 ]);
@@ -201,9 +181,6 @@ export const GBIF_RECOMMENDED = new Set([
   "kingdom",
   "decimalLatitude",
   "decimalLongitude",
-  "geodeticDatum",
-  "countryCode",
-  "individualCount",
 ]);
 
 /** Get properties and required set from a def body */
