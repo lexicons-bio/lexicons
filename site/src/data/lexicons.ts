@@ -149,11 +149,7 @@ export const MODELS: ModelConfig[] = [
 ];
 
 /** Lexicon field -> DwC term_localName (when names differ) */
-export const FIELD_TO_DWC: Record<string, string> = {
-  occurrenceRemarks: "occurrenceRemarks",
-  identificationRemarks: "identificationRemarks",
-  associatedMedia: "associatedMedia",
-};
+export const FIELD_TO_DWC: Record<string, string> = {};
 
 /** Fields that are AT Protocol infrastructure (no DwC mapping) */
 export const ATPROTO_FIELDS = new Set([
