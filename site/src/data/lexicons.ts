@@ -141,7 +141,6 @@ export const MODELS: ModelConfig[] = [
         },
         comment:
           "Blue head and wings, white eyebrow, gray-brown back — classic California Scrub-Jay",
-        isAgreement: false,
       },
       null,
       2
@@ -159,7 +158,6 @@ export const FIELD_TO_DWC: Record<string, string> = {
 /** Fields that are AT Protocol infrastructure (no DwC mapping) */
 export const ATPROTO_FIELDS = new Set([
   "subject",
-  "isAgreement",
   "taxon",
   "location",
   "image",

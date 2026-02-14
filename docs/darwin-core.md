@@ -37,7 +37,6 @@ Additional Darwin Core fields can be added to the schemas as community demand de
 | (repo commit timestamp) | dwc:dateIdentified | Derived from AT Protocol repo |
 | (AT Protocol URI) | dwc:identificationID | — |
 | (repo owner DID) | dwc:identifiedBy | — |
-| `isAgreement` | — | Extension for community consensus |
 
 ### Taxon Fields
 
