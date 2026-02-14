@@ -1,5 +1,6 @@
+import { useState } from "react";
 import { useParams, Navigate } from "react-router-dom";
-import { Box, Typography, Divider, Link as MuiLink, Stack } from "@mui/material";
+import { Box, Typography, Divider, Link as MuiLink, Stack, Paper, ToggleButtonGroup, ToggleButton } from "@mui/material";
 import StatBar from "../components/StatBar";
 import FieldTable from "../components/FieldTable";
 import DwcAlignmentTable from "../components/DwcAlignmentTable";
@@ -21,6 +22,7 @@ export default function LexiconPage() {
   ).length;
 
   const defs = model.lexicon.defs;
+  const [exampleVariant, setExampleVariant] = useState<"short" | "full">("short");
 
   return (
     <>
@@ -44,6 +46,34 @@ export default function LexiconPage() {
           { value: stats.missing, label: "Missing" },
         ]}
       />
+
+      <Box sx={{ display: "flex", alignItems: "center", justifyContent: "space-between", mb: 1 }}>
+        <Typography variant="h5">Example</Typography>
+        <ToggleButtonGroup
+          value={exampleVariant}
+          exclusive
+          size="small"
+          onChange={(_, v) => { if (v) setExampleVariant(v); }}
+        >
+          <ToggleButton value="short">Short</ToggleButton>
+          <ToggleButton value="full">Full</ToggleButton>
+        </ToggleButtonGroup>
+      </Box>
+      <Paper
+        variant="outlined"
+        sx={{
+          p: 2,
+          mb: 4,
+          overflow: "auto",
+          fontFamily: "monospace",
+          fontSize: "0.8rem",
+          lineHeight: 1.6,
+          whiteSpace: "pre",
+          color: "text.secondary",
+        }}
+      >
+        {exampleVariant === "short" ? model.shortExample : model.fullExample}
+      </Paper>
 
       <Typography variant="h5" gutterBottom>
         Lexicon Reference

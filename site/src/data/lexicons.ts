@@ -46,6 +46,8 @@ export interface ModelConfig {
   lexicon: Lexicon;
   classes: string[];
   description: string;
+  shortExample: string;
+  fullExample: string;
 }
 
 export const MODELS: ModelConfig[] = [
@@ -56,6 +58,59 @@ export const MODELS: ModelConfig[] = [
     classes: ["Occurrence", "Event", "Location", "Record-level"],
     description:
       "A biodiversity observation — an organism at a place and time.",
+    shortExample: JSON.stringify(
+      {
+        $type: "bio.lexicons.temp.occurrence",
+        eventDate: "2024-06-12T08:45:00Z",
+        basisOfRecord: "human-observation",
+        location: {
+          decimalLatitude: "37.8716",
+          decimalLongitude: "-122.2727",
+          geodeticDatum: "WGS84",
+        },
+      },
+      null,
+      2
+    ),
+    fullExample: JSON.stringify(
+      {
+        $type: "bio.lexicons.temp.occurrence",
+        eventDate: "2024-06-12T08:45:00Z",
+        basisOfRecord: "human-observation",
+        occurrenceStatus: "present",
+        individualCount: 3,
+        lifeStage: "adult",
+        sex: "female",
+        habitat: "Oak woodland edge near seasonal creek",
+        notes: "Three individuals foraging on fallen acorns",
+        license: "CC-BY-4.0",
+        location: {
+          decimalLatitude: "37.8716",
+          decimalLongitude: "-122.2727",
+          coordinateUncertaintyInMeters: 15,
+          geodeticDatum: "WGS84",
+          country: "United States",
+          countryCode: "US",
+          stateProvince: "California",
+          county: "Alameda",
+          locality: "Strawberry Canyon, UC Berkeley",
+        },
+        blobs: [
+          {
+            image: {
+              $type: "blob",
+              ref: { $link: "bafyrei..." },
+              mimeType: "image/jpeg",
+              size: 204800,
+            },
+            alt: "Western scrub-jay perched on oak branch",
+            aspectRatio: { width: 4032, height: 3024 },
+          },
+        ],
+      },
+      null,
+      2
+    ),
   },
   {
     name: "Identification",
@@ -63,6 +118,49 @@ export const MODELS: ModelConfig[] = [
     lexicon: identificationJson as unknown as Lexicon,
     classes: ["Identification", "Taxon"],
     description: "A taxonomic determination for an observation.",
+    shortExample: JSON.stringify(
+      {
+        $type: "bio.lexicons.temp.identification",
+        subject: {
+          uri: "at://did:plc:abc123.../bio.lexicons.temp.occurrence/3k...",
+          cid: "bafyrei...",
+        },
+        taxon: {
+          scientificName: "Aphelocoma californica",
+          taxonRank: "species",
+          vernacularName: "California Scrub-Jay",
+        },
+      },
+      null,
+      2
+    ),
+    fullExample: JSON.stringify(
+      {
+        $type: "bio.lexicons.temp.identification",
+        subject: {
+          uri: "at://did:plc:abc123.../bio.lexicons.temp.occurrence/3k...",
+          cid: "bafyrei...",
+        },
+        taxon: {
+          scientificName: "Aphelocoma californica",
+          scientificNameAuthorship: "(Vigors, 1839)",
+          taxonRank: "species",
+          vernacularName: "California Scrub-Jay",
+          kingdom: "Animalia",
+          phylum: "Chordata",
+          class: "Aves",
+          order: "Passeriformes",
+          family: "Corvidae",
+          genus: "Aphelocoma",
+        },
+        confidence: "high",
+        comment:
+          "Blue head and wings, white eyebrow, gray-brown back — classic California Scrub-Jay",
+        isAgreement: false,
+      },
+      null,
+      2
+    ),
   },
 ];
 
