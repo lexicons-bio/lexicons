@@ -29,10 +29,10 @@
           },
           "associatedMedia": {
             "type": "array",
-            "description": "Array of image references documenting the observation (Darwin Core dwc:associatedMedia).",
+            "description": "Array of media references documenting the observation (Darwin Core dwc:associatedMedia).",
             "items": {
-              "type": "ref",
-              "ref": "#associatedMedia"
+              "type": "union",
+              "refs": ["#imageMedia", "#audioMedia", "#videoMedia"]
             },
             "maxLength": 10
           },
@@ -56,7 +56,7 @@
         }
       }
     },
-    "associatedMedia": {
+    "imageMedia": {
       "type": "object",
       "description": "A reference to an uploaded image blob.",
       "required": ["image"],
@@ -70,6 +70,46 @@
         "alt": {
           "type": "string",
           "description": "Alt text description of the image for accessibility.",
+          "maxLength": 1000
+        },
+        "aspectRatio": {
+          "type": "ref",
+          "ref": "#aspectRatio"
+        }
+      }
+    },
+    "audioMedia": {
+      "type": "object",
+      "description": "A reference to an uploaded audio blob.",
+      "required": ["audio"],
+      "properties": {
+        "audio": {
+          "type": "blob",
+          "accept": ["audio/mpeg", "audio/ogg", "audio/wav", "audio/flac", "audio/mp4"],
+          "maxSize": 25000000,
+          "description": "The audio blob reference."
+        },
+        "alt": {
+          "type": "string",
+          "description": "Alt text description of the audio for accessibility.",
+          "maxLength": 1000
+        }
+      }
+    },
+    "videoMedia": {
+      "type": "object",
+      "description": "A reference to an uploaded video blob.",
+      "required": ["video"],
+      "properties": {
+        "video": {
+          "type": "blob",
+          "accept": ["video/mp4", "video/webm", "video/quicktime"],
+          "maxSize": 50000000,
+          "description": "The video blob reference."
+        },
+        "alt": {
+          "type": "string",
+          "description": "Alt text description of the video for accessibility.",
           "maxLength": 1000
         },
         "aspectRatio": {

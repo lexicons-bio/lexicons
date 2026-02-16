@@ -22,6 +22,7 @@ export interface LexiconProperty {
   format?: string;
   description?: string;
   ref?: string;
+  refs?: string[];
   maxLength?: number;
   minimum?: number;
   maximum?: number;
@@ -79,6 +80,7 @@ export const MODELS: ModelConfig[] = [
         coordinateUncertaintyInMeters: 15,
         associatedMedia: [
           {
+            $type: "bio.lexicons.temp.occurrence#imageMedia",
             image: {
               $type: "blob",
               ref: { $link: "bafyrei..." },
@@ -87,6 +89,16 @@ export const MODELS: ModelConfig[] = [
             },
             alt: "California Scrub-Jay perched on oak branch",
             aspectRatio: { width: 4032, height: 3024 },
+          },
+          {
+            $type: "bio.lexicons.temp.occurrence#audioMedia",
+            audio: {
+              $type: "blob",
+              ref: { $link: "bafyrei..." },
+              mimeType: "audio/mpeg",
+              size: 1048576,
+            },
+            alt: "Call of California Scrub-Jay",
           },
         ],
       },
@@ -147,6 +159,8 @@ export const FIELD_TO_DWC: Record<string, string> = {};
 export const ATPROTO_FIELDS = new Set([
   "subject",
   "image",
+  "audio",
+  "video",
   "alt",
   "aspectRatio",
   "width",
@@ -210,10 +224,18 @@ export function typeLabel(prop: LexiconProperty): string {
     if (ref.startsWith("#")) return ref;
     return ref.includes(".") ? ref.split(".").pop()! : "ref";
   }
+  if (t === "union") {
+    const refs = prop.refs ?? [];
+    return refs.map((r) => (r.startsWith("#") ? r : r.split(".").pop()!)).join(" | ");
+  }
   if (t === "array") {
     const items = prop.items;
     if (items) {
       const inner = items.type ?? "";
+      if (inner === "union") {
+        const innerLabel = typeLabel(items);
+        return `(${innerLabel})[]`;
+      }
       if (inner === "ref") {
         const ref = items.ref ?? "";
         if (ref.startsWith("#")) return `${ref}[]`;
