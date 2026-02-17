@@ -32,7 +32,7 @@
             "description": "Array of media references documenting the observation (Darwin Core dwc:associatedMedia).",
             "items": {
               "type": "union",
-              "refs": ["#imageMedia", "#audioMedia", "#videoMedia"]
+              "refs": ["#imageMedia", "#audioMedia"]
             },
             "maxLength": 10
           },
@@ -93,28 +93,6 @@
           "type": "string",
           "description": "Alt text description of the audio for accessibility.",
           "maxLength": 1000
-        }
-      }
-    },
-    "videoMedia": {
-      "type": "object",
-      "description": "A reference to an uploaded video blob.",
-      "required": ["video"],
-      "properties": {
-        "video": {
-          "type": "blob",
-          "accept": ["video/mp4", "video/webm", "video/quicktime"],
-          "maxSize": 50000000,
-          "description": "The video blob reference."
-        },
-        "alt": {
-          "type": "string",
-          "description": "Alt text description of the video for accessibility.",
-          "maxLength": 1000
-        },
-        "aspectRatio": {
-          "type": "ref",
-          "ref": "#aspectRatio"
         }
       }
     },

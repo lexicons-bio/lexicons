@@ -160,7 +160,6 @@ export const ATPROTO_FIELDS = new Set([
   "subject",
   "image",
   "audio",
-  "video",
   "alt",
   "aspectRatio",
   "width",
