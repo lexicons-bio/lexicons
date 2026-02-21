@@ -1,5 +1,6 @@
 import occurrenceJson from "../../../lexicons/bio/lexicons/temp/occurrence.json";
 import identificationJson from "../../../lexicons/bio/lexicons/temp/identification.json";
+import mediaJson from "../../../lexicons/bio/lexicons/temp/media.json";
 
 export interface LexiconDef {
   type: string;
@@ -76,17 +77,7 @@ export const MODELS: ModelConfig[] = [
         decimalLongitude: "-122.2727",
         coordinateUncertaintyInMeters: 15,
         associatedMedia: [
-          {
-            image: {
-              $type: "blob",
-              ref: { $link: "bafyrei..." },
-              mimeType: "image/jpeg",
-              size: 204800,
-            },
-            alt: "California Scrub-Jay perched on oak branch",
-            aspectRatio: { width: 4032, height: 3024 },
-            license: "CC-BY-4.0",
-          },
+          "at://did:plc:abc123.../bio.lexicons.temp.media/3k...",
         ],
       },
       null,
@@ -137,6 +128,44 @@ export const MODELS: ModelConfig[] = [
       2
     ),
   },
+  {
+    name: "Media",
+    slug: "media",
+    lexicon: mediaJson as unknown as Lexicon,
+    classes: ["Record-level"],
+    description:
+      "A media resource documenting a biodiversity observation.",
+    shortExample: JSON.stringify(
+      {
+        $type: "bio.lexicons.temp.media",
+        image: {
+          $type: "blob",
+          ref: { $link: "bafyrei..." },
+          mimeType: "image/jpeg",
+          size: 204800,
+        },
+        license: "CC-BY-4.0",
+      },
+      null,
+      2
+    ),
+    fullExample: JSON.stringify(
+      {
+        $type: "bio.lexicons.temp.media",
+        image: {
+          $type: "blob",
+          ref: { $link: "bafyrei..." },
+          mimeType: "image/jpeg",
+          size: 204800,
+        },
+        alt: "California Scrub-Jay perched on oak branch",
+        aspectRatio: { width: 4032, height: 3024 },
+        license: "CC-BY-4.0",
+      },
+      null,
+      2
+    ),
+  },
 ];
 
 /** Lexicon field -> DwC term_localName (when names differ) */
@@ -145,11 +174,6 @@ export const FIELD_TO_DWC: Record<string, string> = {};
 /** Fields that are AT Protocol infrastructure (no DwC mapping) */
 export const ATPROTO_FIELDS = new Set([
   "subject",
-  "image",
-  "alt",
-  "aspectRatio",
-  "width",
-  "height",
 ]);
 
 /** GBIF publishing requirements */
