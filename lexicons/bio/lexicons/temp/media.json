@@ -4,7 +4,7 @@
   "defs": {
     "main": {
       "type": "record",
-      "description": "A media resource documenting a biodiversity observation (Darwin Core / Audiovisual Core ac:Media).",
+      "description": "A media record for a biodiversity observation. Stores image blobs with metadata such as alt text, aspect ratio, and license.",
       "key": "tid",
       "record": {
         "type": "object",
@@ -27,7 +27,7 @@
           },
           "license": {
             "type": "string",
-            "description": "SPDX license identifier for this media (Dublin Core dcterms:license).",
+            "description": "SPDX license identifier for this media (maps to Dublin Core dcterms:license).",
             "knownValues": [
               "CC0-1.0",
               "CC-BY-4.0",

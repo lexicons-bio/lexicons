@@ -29,10 +29,10 @@
           },
           "associatedMedia": {
             "type": "array",
-            "description": "AT-URIs of media records documenting the observation (Darwin Core dwc:associatedMedia).",
+            "description": "Strong references to media records documenting the observation (Darwin Core dwc:associatedMedia).",
             "items": {
-              "type": "string",
-              "format": "at-uri"
+              "type": "ref",
+              "ref": "com.atproto.repo.strongRef"
             },
             "maxLength": 10
           }
